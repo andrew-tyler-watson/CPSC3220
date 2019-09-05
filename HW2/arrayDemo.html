@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>arrayDemo</title>
+    <style>
 
+    </style>
 </head>
 <body>
+    <div>
     <form action="makeTable.php" method="GET" id="RowColumnPicker" enctype="text/plain">
+        <div></div>
         <label for="columns">Columns: </label>
         <input id="columns" type="number" name="columns" required>
         <label for="rows">Rows: </label>
@@ -17,8 +21,10 @@
         <input id="min" type="number" name="min" required>
         <label for="max">Max: </label>
         <input id="max" type="number" name="max" required>
-        <button>Reset</button>
+        
         <button>Submit</button>
+        <button type="reset">Reset</button>
     </form>
+</div>
 </body>
 </html>
