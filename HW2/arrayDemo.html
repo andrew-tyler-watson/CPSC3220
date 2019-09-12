@@ -1,30 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>arrayDemo</title>
     <style>
-
+        #inputs{
+            margin: 10px;
+        }
     </style>
 </head>
+
 <body>
     <div>
-    <form action="makeTable.php" method="GET" id="RowColumnPicker" enctype="text/plain">
-        <div></div>
-        <label for="columns">Columns: </label>
-        <input id="columns" type="number" name="columns" required>
-        <label for="rows">Rows: </label>
-        <input id="rows" type="number" name="rows" required>
-        <label for="min">Min: </label>
-        <input id="min" type="number" name="min" required>
-        <label for="max">Max: </label>
-        <input id="max" type="number" name="max" required>
-        
-        <button>Submit</button>
-        <button type="reset">Reset</button>
-    </form>
-</div>
+        <form action="makeTable.php" method="GET" id="RowColumnPicker" enctype="text/plain">
+            <div id="inputs">
+                <label for="columns">Columns: </label>
+                <input id="columns" type="number" name="columns" required>
+            </div>
+
+            <div id="inputs">
+                <label for="rows">Rows: </label>
+                <input id="rows" type="number" name="rows" required>
+            </div>
+
+            <div id="inputs">
+                <label for="min">Min: </label>
+                <input id="min" type="number" name="min" required>
+            </div>
+
+            <div id="inputs">
+
+                <label for="max">Max: </label>
+                <input id="max" type="number" name="max" required>
+            </div>
+
+
+            <button>Submit</button>
+            <button type="reset">Reset</button>
+        </form>
+    </div>
 </body>
+
 </html>

@@ -26,6 +26,13 @@
             background: white;
             border: 0px solid transparent;
         }
+        table{
+            display: inline-block;
+        }
+
+        #tableContainer{
+            display: inline-block;
+        }
     </style>
 </head>
 
@@ -40,13 +47,7 @@
 
     function Average($row)
     {
-        $i = 0;
-        $total = 0;
-        foreach ($row as $k) {
-            $i++;
-            $total += $k;
-        }
-        return number_format($total / $k, 3);
+        return number_format((array_sum($row)/count($row)), 3);
     }
 
     function StandardDeviation($row)
@@ -77,7 +78,7 @@
         }
     }
 
-
+    print("<div id='tableContainer'>");
     print("<table>");
     print('<th id="corner"></th>');
     for ($j = 0; $j < $columns; $j++) {
@@ -88,7 +89,7 @@
         for ($k = 0; $k < $columns; $k++) {
             print('<td>' . $numbers[$j][$k] . '</td>');
         }
-        print('</tr> <br/>');
+        print('</tr> ');
     }
     print("</table>");
 
@@ -106,7 +107,7 @@
         print('<td>' . Average($numbers[$j]) . '</td>');
         print('<td>' . StandardDeviation($numbers[$j]) . '</td>');
 
-        print('</tr> <br/>');
+        print('</tr> ');
     }
     print("</table>");
 
@@ -131,9 +132,10 @@
                 print('<td>Positive</td>');
             }
         }
-        print('</tr> <br/>');
+        print('</tr>');
     }
     print("</table>");
+    print("</div>");
     ?>
 <a href="arrayDemo.html">Go back!</a>
 </body>
