@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>User Input</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div>
+        <form action="updateInfo.php" method="GET" id="RowColumnPicker" enctype="text/plain">
+            <table>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone Number</th>
+                    <th>Email Address</th>
+                </tr>
+                <tr>
+                    <td id="inputs">
+                        <input id="firstName" type="text" name="firstName" required>
+                    </td>
+                    <td id="inputs">
+                        <input id="lastName" type="text" name="lastName" required>
+                    </td>
+                    <td id="inputs">
+                        <input id="phoneNumber" type="tel" name="phoneNumber" required>
+                    </td>
+                    <td id="inputs">
+                        <input id="emailAddress" type="email" name="emailAddress" required>
+                    </td>
+                </tr>
+
+            </table>
+            <button>Submit</button>
+            <button type="reset">Reset</button>
+        </form>
+    </div>
+    <table>
+    <script src="" async defer></script>
+</body>
+
+</html>
