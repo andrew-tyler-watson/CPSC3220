@@ -39,12 +39,22 @@
     $statement->bind_param("ssiiididss", $_GET['title'], $_GET['description'], $_GET['release_year'], 
                                          $_GET['language_id'], $_GET['rental_duration'], $_GET['rental_rate'], 
                                          $_GET['length'], $_GET['replacement_cost'], $_GET['rating'], $_GET['special_feature']);
-    $statement->execute();
-    $customers = $statement->get_result();
+
+    try {
+        $statement->execute();
+        print("Success!!");
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+        print("<p>Please try harder.</p>");
+    }
+    
 
     print($response);
     print("<form action=\"manager.html\">
                 <button type=\"submit\">Manager</button>
             </form>");
+
+    $statement->close();
+    $db->close();
 
 ?>

@@ -67,6 +67,9 @@
     print("<form action=\"manager.html\">
     <button type=\"submit\">Manager</button>
     </form>");
+
+    $statement->close();
+    $db->close();
 ?>
 
 <!-- "2)	Create the view_customers.php file.  
