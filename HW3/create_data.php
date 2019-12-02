@@ -14,9 +14,9 @@
 
     // Grab basic arrayss
     $first_names = explode(",", trim(file_get_contents("first_names.csv")));
-    $last_names = explode("\n", file_get_contents("last_names.txt"), -1);
+    $last_names = explode(":", str_replace("\n", ":", file_get_contents("last_names.txt")), -1);
     $street_types = explode("..;", trim(file_get_contents("street_types.txt")));
-    $street_names = explode(":", trim(str_replace("\n", ":", file_get_contents("street_names.txt"))), -1);
+    $street_names = explode(":", str_replace("\r", "", str_replace("\n", ":", file_get_contents("street_names.txt"))), -1);
     $domains_full_split = explode(".", trim(file_get_contents("domains.txt")));
 
 
@@ -29,12 +29,6 @@
     }
 
     $data = array($first_names, $last_names,$street_names, $street_types, $domains_joined);
-    /*foreach($data as $array){
-        for($l = 0; $l < count($array); $l++){
-            trim()
-        }
-    } */
-
 
     //A bunch of functions for making unique entries in our table
     function GetUniqueNameCombination($nameEntries, $first_names, $last_names){
@@ -60,7 +54,7 @@
             }
         }
         $randomStreetNumber = random_int(0, 10000);
-        return $randomStreetNumber . trim($concatenatedName);
+        return $randomStreetNumber . " " . trim($concatenatedName);
     }
 
     function GetRandomDomain($domains){
@@ -100,7 +94,7 @@
     $nameEntries = array();
     $streetEntries = array();
 
-    $output = fopen("customers.txt", "w");
+    $output = fopen("customers.txt", "wb");
     for ($j = 0; $j < 25; $j++) {
         $currentName = GetUniqueNameCombination($nameEntries, $first_names, $last_names);
         $currentAddress = GetUniqueStreetCombination($streetEntries, $street_names, $street_types);

@@ -13,6 +13,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="">
+    <link rel='stylesheet' type='text/css' href='table.css'>
 </head>
 
 <body>
@@ -33,7 +34,30 @@
 
     function validateEmail($emailAddress)
     {
-        return true;
+        if(strlen($emailAddress) > 30 || strlen($emailAddress) < 6){
+            print("<p>Error!! email address must conform to \"___@__.com\"</p>");
+            exit();
+        }
+        $end = substr($emailAddress, -4);
+        $atIndex = strpos($emailAddress, '@');
+        $name = substr($emailAddress, 0, $atIndex);
+        $domain = substr($emailAddress, $atIndex + 1, -4);
+        if(ctype_alnum($name) == false){
+            
+                print("<p>Error!! email address name must be alphanumeric</p>");
+                exit();
+            
+        }
+        if(ctype_alpha($domain) == false){
+            
+                print("<p>Error!! email address domain must contain only letters</p>");
+                exit();
+            
+        }
+        if(strcmp($end, ".com") != 0 && strcmp($end, ".edu") != 0){
+            print("<p>Error!! email address must conform to \"___@__.com (or .edu)\"</p>");
+            exit();
+        }
     }
     function validateName($firstName, $lastName)
     {
@@ -41,26 +65,30 @@
             print("<p>Error!! lastname and firstname must be letters only.</p>");
             exit();
         }
-        if (count($firstName) == 0 || count($lastName) == 0) {
+        if (strlen($firstName) == 0 || strlen($lastName) == 0) {
             print("<p>Error!! lastname and firstname must be specified.</p>");
             exit();
         }
-        if (count($lastName . ", " . $firstName) > 20) {
-            print("<p>Error!! lastname, firstname must be less then 20 characters</p>");
+        if (strlen($lastName) > 20 || strlen($firstName) > 20) {
+            print("<p>Error!! lastname, firstname must be less than 20 characters</p>");
             exit();
         }
     }
 
     function validatePhoneNumber($phoneNumber)
     {
+        if(strlen($phoneNumber) != 12){
+            print("<p>Error!! Phone Number should be of form xxx-xxx-xxxx where x is a number 0-9</p>");
+            exit();
+        }
         $numbersOnly = str_replace("-", "", $phoneNumber);
         if (ctype_digit($numbersOnly) == false) {
             print("<p>Error!! Phone Number should be of form xxx-xxx-xxxx where x is a number 0-9</p>");
             exit();
         }
-        $phoneArray = array($phoneNumber);
-        if (strcmp(($phoneArray[3] . $phoneArray[7]), "--") == 0) {
-            print("<p>Error!! Phone Number should be of form xxx-xxx-xxxx where x is a number 0-9</p>");
+        $phoneArray = str_split($phoneNumber);
+        if (strcmp(($phoneArray[3] . $phoneArray[7]), "--") != 0) {
+            print("<p>Error!! Phone Number should be of form xxx-xxx-xxxx where x is a number 0-9</p>" );
             exit();
         }
     }
@@ -70,7 +98,7 @@
         $output = array();
         $records = explode("\n", file_get_contents($fileName), -1);
         for ($i = 0; $i < count($records); $i += 1) {
-            $recordParsed = explode(":", $records[i]);
+            $recordParsed = explode(":", $records[$i]);
             $output[$recordParsed[0]] = [$recordParsed[1], $recordParsed[2], $recordParsed[3]];
         }
         return $output;
@@ -78,14 +106,14 @@
 
     function associativeArrayToFile($array, $fileName)
     {
-        $file = fopen($fileName, 'r+');
-        fwrite($file, "");
-        fclose($file);
+        file_put_contents($fileName, "");
 
+        $file = fopen($fileName, 'a');
         foreach ($array as $key => $value) {
             $recordString = $key . ":" . $value[0] . ":" . $value[1] . ":" . $value[2] . "\n";
-            file_put_contents($fileName, $recordString);
+            fwrite($file, $recordString);
         }
+        fclose($file);
     }
 
     validateEmail($emailAddress);
@@ -121,6 +149,7 @@
 
     ?>
 
+    <a href="userInfo.html">Go Back!</a>
 
 
 </body>
